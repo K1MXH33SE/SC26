@@ -1,64 +1,43 @@
-*{
+* {
     padding: 0;
     margin: 0;
-    box-sizing:border-box;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif
-
+    box-sizing: border-box;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
- 
-.hero{
+
+body {
+    background: black;
+    color: white;
+}
+
+.hero {
     height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-    url(backgrouhd.jpg);
+    width: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                      url(background.jpg);
     background-size: cover;
     background-position: center;
+
+    /* Center EVERYTHING */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color:rgb(255, 255, 255);
-
-
+    text-align: center; /* <-- helps ensure middle alignment */
 }
-
-body {
-    background: rgb(0, 0, 0);
-    color: white;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif
-    
-}
-
 
 h1 {
-    color: rgb(255, 255, 255);
     font-size: 2rem;
-    font-weight:500;
+    font-weight: 500;
     margin-bottom: 20px;
 }
 
-.timebox{
+.timebox {
     display: flex;
     gap: 90px;
 }
 
-.time{
-    text-align: center;
-}
-
-.time h2{
+.time h2 {
     font-size: 1rem;
     font-weight: 500;
 }
-
-
-/** lol
-#button1 {
-    background-color: rgb(255, 196, 87);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    border: none;
-    font-size: 16px;
-
-}
-    */ 
