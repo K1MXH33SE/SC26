@@ -8,17 +8,38 @@
 /* --- Global Styles --- */
 
 .intro {
+    position: relative;
     height: 100vh;
-    background-image: url("HELP_ME.png"); 
+    background-image: url("DSC01405.png");
     background-size: cover;
     background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: clamp(2rem, 6vw, 4rem);  
+    font-size: clamp(2rem, 6vw, 4rem);
     color: white;
     text-shadow: 0 0 10px rgba(0,0,0,0.6);
+    overflow: hidden;
 }
+
+.intro .overlay {
+    position: absolute;
+    inset: 0;
+    background-image: url("glow.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+
+/* Make sure your text sits ABOVE the overlay */
+.intro > *:not(.overlay) {
+    position: relative;
+    z-index: 2;
+}
+
 
 /* --- CLEAN, STATIC DATE STYLE --- */
 .dates {
@@ -394,12 +415,20 @@
         height: auto;
     }
     
-    .day-header {
+   .day-header {
         border-right: none;
         border-bottom: 2px solid rgba(255,255,255,0.3);
-        padding-bottom: 10px;
-        flex-direction: row;
-        align-items: center;
+        padding-bottom: 15px;
+        
+        /* CHANGE: Switch from row to column so they stack */
+        flex-direction: column; 
+        
+        /* CHANGE: Align text to the left */
+        align-items: flex-start; 
+        
+        /* CHANGE: Add space between "WEDNESDAY" and "14 JAN" */
+        gap: 8px; 
+        
         height: auto;
     }
     
