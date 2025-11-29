@@ -5,57 +5,628 @@
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
-body {
-    background: black;
-    color: white;
-}
+/* --- Global Styles --- */
 
-.hero {
+.intro {
     height: 100vh;
-    width: 100%;
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-                      url(background.jpg);
+    background-image: url("HELP_ME.png"); 
     background-size: cover;
     background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(2rem, 6vw, 4rem);  
+    color: white;
+    text-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
 
-    /* Center EVERYTHING */
+/* --- CLEAN, STATIC DATE STYLE --- */
+.dates {
+    width: 100%;
+    padding: 120px 20px;
+    background-color: #f7f3df; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dates-inner {
+    width: auto;
+    min-width: 300px;
+    max-width: 900px;
+    padding: 30px 60px;
+    background-color: #f7f3df;
+    color: #120d02c5;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 800; 
+    text-align: center;
+    letter-spacing: 1px;
+    border-radius: 4px; 
+    box-shadow: 0 4px 15px rgba(143, 141, 77, 0.082);
+}
+
+/* --- VIDEO SECTION --- */
+.video {
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    position: relative;
+    background: black;
+    overflow: hidden;
+}
+
+.video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+#soundToggle {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: white;
+    border: 2px solid white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+}
+
+#soundToggle:hover {
+    background-color: white;
+    color: black;
+}
+
+.about {
+    /* 1. Make the section span the full width */
+    width: 100%;
+    max-width: 100%; 
+    
+    /* 2. Apply the cream background color here so it goes edge-to-edge */
+    background-color: #f7f3df; /* Matching the section below */
+    
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* This centers the content inside */
+}
+
+/* Update this block in your CSS */
+.about p {
+    max-width: 800px;
+    text-align: center;
+    font-size: clamp(1rem, 2.3vw, 1.2rem);
+    line-height: 1.6;
+    color: #1a1a1a;
+    
+    /* CHANGED: This creates the gap between the mission and the verse */
+    margin-bottom: 40px; 
+}
+
+#button1 {
+    background-color: rgba(26, 20, 10, 0.853);
+    color: rgb(255, 255, 255);
+    padding: 15px 30px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background 0.3s;
+}
+
+#button1:hover {
+    background-color: transparent; 
+    
+    /* GOLD TEXT */
+    color: #DAA520; 
+    
+    font-weight: bold;
+    transition: all 0.8s inset;
+    /* GOLD BORDER (Inset Shadow) */
+    box-shadow: inset 0 0 0 3px #DAA520;
+    
+}
+
+
+
+.programme-style-section {
+    background-color: #f7f3df; 
+    color: #120d02db;
+    padding: 80px 20px;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.programme-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.programme-subtitle {
+    font-size: 1rem;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.accordion-item {
+    width: 100%;
+    max-width: 800px;
+    border-bottom: 1.5px solid black;
+}
+
+.accordion-item:first-of-type {
+    border-top: 1.5px solid black;
+}
+
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.accordion-header:hover {
+    background-color: rgba(0,0,0,0.03);
+}
+
+.accordion-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 400;
+}
+
+.accordion-icon {
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    padding: 0 10px;
+}
+
+.accordion-content ul {
+    list-style-type: none;
+    padding-bottom: 30px;
+}
+
+.accordion-content li {
+    font-size: 1.2rem;
+    padding: 12px 0;
+}
+
+.accordion-content p {
+    font-size: 1.2rem;
+    padding-bottom: 30px;
+    line-height: 1.5;
+}
+
+
+/* --- SECTION 2: PROGRAMME (Horizontal Scroll) --- */
+
+.scroll-container {
+    height: 400vh; 
+    position: relative;
+    z-index: 1; 
+}
+
+.sticky-wrapper {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+
+    background: linear-gradient(rgba(35, 30, 18, 0.85), rgba(37, 39, 21, 0.75)), 
+                url('test1.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.horizontal-track {
+    display: flex;
+    width: 400vw; /* 4 slides */
+    height: 100vh;
+    will-change: transform;
+}
+
+.day-card {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.855);
+    background: transparent; 
+}
+
+.day-content {
+    width: 100%;
+    max-width: 1200px;
+    height: 80%; 
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; 
+    gap: 40px;
+}
+
+.day-header {
+    border-right: none;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 100%;
+}
+
+.day-header h2 {
+    font-size: clamp(2.5rem, 5.5vw, 5.5rem);
+    text-transform: uppercase;
+    line-height: 0.9;
+    margin: 0;
+}
+
+.date-label {
+    color: rgba(255,255,255,0.7);
+    font-size: clamp(0.5rem, 2vw, 1.5rem);
+    font-weight: bold;
+    margin: 0;
+}
+
+.day-schedule {
+    overflow-y: auto; 
+    padding-right: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+}
+
+.day-schedule::-webkit-scrollbar {
+    width: 6px;
+}
+.day-schedule::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,0.4);
+    border-radius: 4px;
+}
+
+.time-slot {
+    display: flex;
+    align-items: baseline;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    font-size: clamp(1rem, 2vh, 1.4rem);
+}
+
+.time-slot:last-child {
+    border-bottom: none;
+}
+
+.time-slot .time {
+    font-weight: bold;
+    width: 130px;
+    flex-shrink: 0;
+    opacity: 0.8;
+}
+
+.time-slot .event {
+    font-weight: 300;
+}
+
+/* --- SECTION 3: OUTRO (UPDATED FOR SICK LOOK) --- */
+.outro {
+    width: 100%;
+    height: 80vh; /* Taller for cinematic feel */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+
+    /* PARALLAX BACKGROUND + DARK OVERLAY */
+    /* Replace the URL below with your own image file (e.g., 'outro.jpg') */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8)),
+                url('DSC01518.png');
+    
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* This creates the cool scrolling effect */
+
+    /* Typography */
+    color: rgba(255, 255, 255, 0.858);
+    font-size: clamp(3.25rem, 4.5vw, 3.25rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    letter-spacing: -2px; /* Tight and modern */
+    text-shadow: 0 10px 40px rgba(0,0,0,0.6); /* Heavy shadow to pop off background */
+    padding: 20px;
+}
+
+/* Update this block in your CSS */
+.insta-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    
+    /* CHANGED: Now matches your Deep Green theme instead of gradient */
+    background: #223120; 
+    
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000;
+}
+
+.insta-float:hover {
+    transform: scale(1.1);
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 768px) {
+    .day-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        gap: 20px;
+        height: auto;
+    }
+    
+    .day-header {
+        border-right: none;
+        border-bottom: 2px solid rgba(255,255,255,0.3);
+        padding-bottom: 10px;
+        flex-direction: row;
+        align-items: center;
+        height: auto;
+    }
+    
+    .day-header h2 {
+        font-size: 2.5rem;
+    }
+    
+    .date-label {
+        font-size: 1.5rem;
+    }
+
+    .time-slot .time {
+        width: 90px;
+    }
+    
+    /* On mobile, remove parallax for better performance */
+    .outro {
+        background-attachment: scroll;
+    }
+    
+}
+
+.text-link {
+    color: #0e140d; /* Your deep green */
+    text-decoration: underline;
+    font-weight: bold;
+    transition: opacity 0.2s;
+}
+
+.text-link:hover {
+    opacity: 0.7;
+    text-decoration: none;
+}
+
+/* --- MINIMAL LOCATION STYLES (UPDATED) --- */
+
+.location-minimal {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center; /* <-- helps ensure middle alignment */
+    padding: 30px 0;
+    text-align: center;
 }
 
-h1 {
-    font-size: 2rem;
-    font-weight: 500;
+/* Compass Style */
+.compass-box svg {
+    margin-bottom: 15px;
+    /* Smooth rotation transition */
+    transition: transform 1.4s cubic-bezier(0.34, 1.56, 0.64, 1); 
+    stroke: black; /* Compass is now black */
+}
+
+/* ROTATION LOGIC:
+   This targets the svg ONLY when the parent accordion-content has the 'open' class 
+   added by the JavaScript */
+.accordion-content.open .compass-box svg {
+    transform: rotate(420deg);
+}
+
+/* Address Styling */
+.address-clean {
+    /* CHANGE THIS NUMBER (e.g., to 1.2rem or 1.5rem) */
+    font-size: 1.3rem; 
+    
+    font-weight: 400;
+    color: black;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+
+
+.address-clean .divider {
+    color: black;
+    margin: 0 10px;
+}
+
+/* Coordinates Styling */
+.coords-clean {
+    /* CHANGE THIS NUMBER (e.g., to 1.1rem or 1.2rem) */
+    font-size: 1.1rem;
+    
+    font-weight: 400;
+    color: black; 
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.coords-clean:hover {
+    opacity: 1;
+    border-bottom: 1px solid black;
+}
+
+/* --- CONTRIBUTE SECTION --- */
+.contribute-section {
+    background-color: #f7f3df; /* Matches your Cream/Wheat theme */
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.contribute-inner {
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+}
+
+.contribute-text {
+    font-size: clamp(1rem, 2.3vw, 1.2rem);
+    line-height: 1.6;
+    color: #1a1a1a;
+    margin-bottom: 40px;
+}
+
+/* The Bank Details Card */
+.bank-card {
+    background-color: white;
+    border: 2px solid #334a30; /* Your Deep Green */
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(51, 74, 48, 0.1);
+    text-align: left;
+}
+
+.bank-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #334a30;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+.bank-number {
+    font-family: 'Courier New', Courier, monospace; /* Tech/Bank feel */
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    font-weight: 700;
+    color: #1a1a1a;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
     margin-bottom: 20px;
 }
 
-.timebox {
+.bank-details {
     display: flex;
-    gap: 90px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.time h2 {
-    font-size: 1rem;
-    font-weight: 500;
+.detail-group {
+    display: flex;
+    flex-direction: column;
 }
 
-/*mobile friendly*/
+.detail-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 5px;
+}
 
-/* Mobile fix: stack timer vertically */
-@media (max-width: 600px) {
-    .timebox {
+.detail-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #334a30;
+}
+
+.contribute-thanks {
+    font-style: italic;
+    color: #666;
+    margin-top: 20px;
+}
+
+/* Mobile Tweak */
+@media (max-width: 500px) {
+    .bank-card {
+        text-align: center;
+    }
+    .bank-details {
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
     }
+}
 
-    h1 {
-        font-size: 1.5rem;
-    }
+/* --- FIXED BOTTOM LEFT LOGO --- */
+.fixed-logo {
+    position: fixed;
+    bottom: -5px;
+    left: 15px;
+    
+    /* UPDATED: Increased from 60px to 120px */
+    width: 180px; 
+    
+    height: auto;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
 
-    .time h2 {
-        font-size: 1.2rem;
+.fixed-logo img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.fixed-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Mobile Tweak: Made bigger here too (80px) so it's not tiny */
+@media (max-width: 768px) {
+    .fixed-logo {
+        width: 100px;
+        bottom: 20px;
+        left: 20px;
     }
+}
+
+/* --- GOLD TEXT STYLE --- */
+.gold-text {
+    color: #DAA520; /* Matches your button gold */
+    text-shadow: 0 0 15px rgba(218, 165, 32, 0.5); /* Soft gold glow */
 }
