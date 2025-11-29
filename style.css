@@ -25,7 +25,7 @@
 .intro .overlay {
     position: absolute;
     inset: 0;
-    background-image: url("glow.png");
+    background-image: url("ds.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
